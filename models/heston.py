@@ -17,7 +17,7 @@ import numpy as np
 from scipy.stats import norm
 
 
-def calc_dW1_dW2(rho, dt):
+def calc_dW1_dW2(rho: float, dt: float) -> tuple[float, float]:
     z1 = norm.rvs(size=1)
     z2 = norm.rvs(size=1)
     epsilon1 = z1
@@ -25,9 +25,11 @@ def calc_dW1_dW2(rho, dt):
     return epsilon1 * np.sqrt(dt), epsilon2 * np.sqrt(dt)
 
 
-def calc_dv(v, dt, kappa, theta, xi, dW2):
+def calc_dv(
+    v: float, dt: float, kappa: float, theta: float, xi: float, dW2: float
+) -> float:
     return kappa * (theta - v) * dt + xi * np.sqrt(v) * dW2
 
 
-def calc_dS(S, v, dt, mu, dW1):
+def calc_dS(S: float, v: float, dt: float, mu: float, dW1: float) -> float:
     return mu * S * dt + np.sqrt(v) * S * dW1
